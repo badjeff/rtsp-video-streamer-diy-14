@@ -47,7 +47,8 @@ bool hasDisplay; // we probe for the device at runtime
 //#define CAMERA_MODEL_ESP_EYE
 //#define CAMERA_MODEL_M5STACK_PSRAM
 //#define CAMERA_MODEL_M5STACK_WIDE
-#define CAMERA_MODEL_AI_THINKER
+//#define CAMERA_MODEL_AI_THINKER
+#define CAMERA_MODEL_M5CAM
 
 #include "camera_pins.h"
 
