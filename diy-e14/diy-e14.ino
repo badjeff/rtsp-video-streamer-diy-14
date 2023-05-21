@@ -170,9 +170,19 @@ void setup()
     config.pin_reset = RESET_GPIO_NUM;
     config.xclk_freq_hz = 20000000;
     config.pixel_format = PIXFORMAT_JPEG;
-    config.frame_size = FRAMESIZE_SVGA;
-    config.jpeg_quality = 12; 
-    config.fb_count = 2;       
+
+    if (psramFound()) {
+      Serial.println("found PSRAM");
+      config.frame_size = FRAMESIZE_UXGA;
+      config.jpeg_quality = 10;
+      config.fb_count = 2;
+    } else {
+      Serial.println("no PSRAM found, use DRAM for frame buffering");
+      config.fb_location = CAMERA_FB_IN_DRAM;
+      config.frame_size = FRAMESIZE_SVGA;
+      config.jpeg_quality = 12;
+      config.fb_count = 1;
+    }
   
     #if defined(CAMERA_MODEL_ESP_EYE)
       pinMode(13, INPUT_PULLUP);
